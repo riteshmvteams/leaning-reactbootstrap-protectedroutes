@@ -1,0 +1,8 @@
+a {
+  opacity: 0.7;
+  transition: 300ms;
+}
+
+a:is(:hover, :focus-visible) {
+  opacity: 1;
+}

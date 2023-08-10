@@ -3,24 +3,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Dashboard from "./pages/Dashboard";
+// components
 import Header from "./components/Header";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Dashboard from "./pages/Dashboard";
+// Custom hook for using the auth context
+import { useAuth } from "./hooks/useAuth";
+import BlogPage from "./pages/BlogPage";
+import AccountSettings from "./pages/AccountSettings";
 
-// useContext
-import { useContext } from "react";
-import { AuthContext } from "./context/AuthContext";
-
-function App() {
-  // const [isLogged, setIsLogged] = useState(false);
+export default function App() {
   // getting value from the context
-  const { isLogged } = useContext(AuthContext);
+  const {
+    state: { isLogged },
+  } = useAuth();
 
   return (
     <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<BlogPage />} />
         <Route
           path="/login"
           element={
@@ -45,9 +48,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute isLogged={isLogged}>
+              <AccountSettings />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;
