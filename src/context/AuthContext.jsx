@@ -1,12 +1,10 @@
 import { createContext, useReducer } from "react";
-import { authReducer } from "./authReducer";
+import { authReducer, initialState } from "./authReducer";
 
+// created the context
 export const AuthContext = createContext(null);
 
-const initialState = {
-  isLogged: false,
-};
-
+// context provide
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
   return (
@@ -15,5 +13,4 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
 export default AuthProvider;
