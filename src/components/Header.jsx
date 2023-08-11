@@ -4,7 +4,8 @@ import { useAuth } from "../hooks/useAuth";
 
 export default function Header() {
   const {
-    state: { isLogged },
+    state: { authorizationToken },
+    dispatch,
   } = useAuth();
   return (
     <Navbar expand="lg" className="bg-dark-subtle py-3">
@@ -15,7 +16,7 @@ export default function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto d-flex gap-5 align-items-center">
-            {isLogged ? (
+            {authorizationToken ? (
               <>
                 <NavLink
                   className="text-black text-uppercase text-decoration-none fw-medium"
@@ -35,7 +36,9 @@ export default function Header() {
                 >
                   Account Settings
                 </NavLink>
-                <Button>LogOut</Button>
+                <Button onClick={() => dispatch({ type: "logOut" })}>
+                  LogOut
+                </Button>
               </>
             ) : (
               <>

@@ -1,21 +1,23 @@
 // definined the initial state for reducer
 export const initialState = {
   isLogged: false,
-  authorizationToken: null,
+  authorizationToken: localStorage.getItem("token") || null,
 };
 
 export const authReducer = (state, action) => {
-  switch (action) {
+  switch (action.type) {
     case "loggedIn":
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         isLogged: true,
+        authorizationToken: action.payload.token,
       };
+
     case "logOut":
-      return {
-        ...state,
-        isLogged: false,
-      };
+      localStorage.removeItem("token");
+      return { ...state, authorizationToken: null };
+
     default:
       return { ...state };
   }

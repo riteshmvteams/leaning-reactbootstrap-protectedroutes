@@ -4,18 +4,18 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Dashboard from "./pages/Dashboard";
+import BlogPage from "./pages/BlogPage";
+import AccountSettings from "./pages/AccountSettings";
 // components
 import Header from "./components/Header";
 import ProtectedRoute from "./components/ProtectedRoute";
 // Custom hook for using the auth context
 import { useAuth } from "./hooks/useAuth";
-import BlogPage from "./pages/BlogPage";
-import AccountSettings from "./pages/AccountSettings";
 
 export default function App() {
   // getting value from the context
   const {
-    state: { isLogged },
+    state: { authorizationToken },
   } = useAuth();
 
   return (
@@ -27,7 +27,7 @@ export default function App() {
         <Route
           path="/login"
           element={
-            <ProtectedRoute isLogged={!isLogged}>
+            <ProtectedRoute isLogged={!authorizationToken}>
               <LoginPage />
             </ProtectedRoute>
           }
@@ -35,7 +35,7 @@ export default function App() {
         <Route
           path="/register"
           element={
-            <ProtectedRoute isLogged={!isLogged}>
+            <ProtectedRoute isLogged={!authorizationToken}>
               <RegisterPage />
             </ProtectedRoute>
           }
@@ -43,7 +43,7 @@ export default function App() {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute isLogged={isLogged}>
+            <ProtectedRoute isLogged={authorizationToken}>
               <Dashboard />
             </ProtectedRoute>
           }
@@ -51,7 +51,7 @@ export default function App() {
         <Route
           path="/settings"
           element={
-            <ProtectedRoute isLogged={isLogged}>
+            <ProtectedRoute isLogged={authorizationToken}>
               <AccountSettings />
             </ProtectedRoute>
           }
