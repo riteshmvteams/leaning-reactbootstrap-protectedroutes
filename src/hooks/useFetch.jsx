@@ -4,15 +4,20 @@ import { useState } from "react";
 export const useFetch = async (url) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [err, setErr] = useState("");
   try {
     setLoading(true);
     const response = await fetch(url, { method: "GET" });
+    if (!response.ok) {
+      throw new Error("Something Went wrong Please try Again");
+    }
     const result = await response.json();
     setData(result);
-    return { data, loading };
+    return { data, loading, err };
   } catch (error) {
     console.log(error);
-    return { loading, error };
+    setErr(error.message);
+    return { loading, err, data };
   } finally {
     setLoading(false);
   }
