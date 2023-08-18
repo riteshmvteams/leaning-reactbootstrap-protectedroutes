@@ -2,6 +2,7 @@
 export const initialState = {
   isLogged: false,
   authorizationToken: localStorage.getItem("token") || null,
+  user: JSON.parse(localStorage.getItem("user")) || {},
 };
 
 export const authReducer = (state, action) => {
@@ -17,6 +18,10 @@ export const authReducer = (state, action) => {
     case "logOut":
       localStorage.removeItem("token");
       return { ...state, authorizationToken: null };
+
+    case "saveUser":
+      localStorage.setItem("user", JSON.stringify(action.payload));
+      return { ...state, user: action.payload };
 
     default:
       return { ...state };
