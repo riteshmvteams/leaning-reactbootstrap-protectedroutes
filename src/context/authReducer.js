@@ -17,7 +17,7 @@ export const authReducer = (state, action) => {
 
     case "logOut":
       localStorage.removeItem("token");
-      return { ...state, authorizationToken: null };
+      return { ...state, authorizationToken: null, isLogged: false };
 
     case "saveUser":
       localStorage.setItem("user", JSON.stringify(action.payload));
