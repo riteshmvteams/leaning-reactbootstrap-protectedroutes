@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Dashboard from "./pages/Dashboard";
 import AccountSettings from "./pages/AccountSettings";
+import MainLayout from "./layout/MainLayout";
 
 export default function App2() {
   const {
@@ -16,43 +17,49 @@ export default function App2() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/blogs",
-      element: <BlogPage />,
-    },
-    {
-      path: "/login",
-      element: (
-        <ProtectedRoute isLogged={!authorizationToken}>
-          <LoginPage />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/register",
-      element: (
-        <ProtectedRoute isLogged={!authorizationToken}>
-          <RegisterPage />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/register",
-      element: (
-        <ProtectedRoute isLogged={authorizationToken}>
-          <Dashboard />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/register",
-      element: (
-        <ProtectedRoute isLogged={authorizationToken}>
-          <AccountSettings />
-        </ProtectedRoute>
-      ),
+      element: <MainLayout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/blogs",
+          element: <BlogPage />,
+        },
+        {
+          path: "/login",
+          element: (
+            <ProtectedRoute isLogged={!authorizationToken}>
+              <LoginPage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/register",
+          element: (
+            <ProtectedRoute isLogged={!authorizationToken}>
+              <RegisterPage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/dashboard",
+          element: (
+            <ProtectedRoute isLogged={authorizationToken}>
+              <Dashboard />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/settings",
+          element: (
+            <ProtectedRoute isLogged={authorizationToken}>
+              <AccountSettings />
+            </ProtectedRoute>
+          ),
+        },
+      ],
     },
   ]);
 
