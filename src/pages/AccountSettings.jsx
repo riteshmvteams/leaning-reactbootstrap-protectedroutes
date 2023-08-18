@@ -10,8 +10,6 @@ export default function AccountSettings() {
     file: state.user.file || "",
   });
 
-  console.log(user);
-
   // upload file
   const handleFileUpload = (e) => {
     setUser((prev) => ({
