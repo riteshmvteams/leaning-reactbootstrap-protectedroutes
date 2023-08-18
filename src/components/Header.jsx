@@ -1,6 +1,7 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import UserAvatar from "./UserAvatar";
 
 export default function Header() {
   const {
@@ -15,7 +16,7 @@ export default function Header() {
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto d-flex gap-5 align-items-center">
+          <Nav className="ms-auto d-flex gap-4 align-items-center">
             {authorizationToken ? (
               <>
                 <NavLink
@@ -39,6 +40,7 @@ export default function Header() {
                 <Button onClick={() => dispatch({ type: "logOut" })}>
                   LogOut
                 </Button>
+                <UserAvatar />
               </>
             ) : (
               <>
