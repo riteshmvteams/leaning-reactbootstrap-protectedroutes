@@ -4,7 +4,7 @@ import { initialState, postReducer } from "./postReducer";
 export const PostContext = createContext();
 
 const PostProvider = ({ children }) => {
-  const [{ posts, loading, error }, dispatch] = useReducer(
+  const [{ posts, loading, error, editPostData }, dispatch] = useReducer(
     postReducer,
     initialState
   );
@@ -77,6 +77,53 @@ const PostProvider = ({ children }) => {
     }
   };
 
+  const fetchSinglePost = async (id) => {
+    try {
+      dispatch({ type: "posts/loading" });
+      const response = await fetch(`http://localhost:8080/posts/${id}`);
+      // Manually throwing error if response.ok true
+      if (!response.ok) {
+        throw new Error("Something went wrong... please try again later");
+      }
+      const data = await response.json();
+      dispatch({ type: "posts/single", payload: data });
+      console.log(data);
+
+      return data;
+    } catch (error) {
+      dispatch({ type: "posts/error", payload: error.message });
+      console.log(error);
+    }
+  };
+
+  const editPost = async (data, id) => {
+    const options = {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      dispatch({ type: "posts/loading" });
+      const response = await fetch(
+        `http://localhost:8080/posts/${id}`,
+        options
+      );
+      // Manually throwing error if response.ok true
+      if (!response.ok) {
+        throw new Error("Something went wrong... please try again later");
+      }
+      const data = await response.json();
+
+      console.log(data);
+    } catch (error) {
+      dispatch({ type: "posts/error", payload: error.message });
+      console.log(error);
+    }
+  };
+
   return (
     <PostContext.Provider
       value={{
@@ -86,6 +133,9 @@ const PostProvider = ({ children }) => {
         fetchPostsFromServer,
         sendPostToServer,
         deletePost,
+        fetchSinglePost,
+        editPostData,
+        editPost,
       }}
     >
       {children}

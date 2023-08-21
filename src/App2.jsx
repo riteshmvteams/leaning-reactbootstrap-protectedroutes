@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import Dashboard from "./pages/Dashboard";
 import AccountSettings from "./pages/AccountSettings";
 import MainLayout from "./layout/MainLayout";
+import EditPost from "./pages/EditPost";
 
 export default function App2() {
   const {
@@ -56,6 +57,14 @@ export default function App2() {
           element: (
             <ProtectedRoute isLogged={authorizationToken}>
               <AccountSettings />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/edit/:id",
+          element: (
+            <ProtectedRoute isLogged={authorizationToken}>
+              <EditPost />
             </ProtectedRoute>
           ),
         },

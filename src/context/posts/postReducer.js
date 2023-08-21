@@ -2,6 +2,7 @@ const initialState = {
   posts: [],
   loading: false,
   error: "",
+  editPostData: {},
 };
 
 const postReducer = (state, action) => {
@@ -14,6 +15,8 @@ const postReducer = (state, action) => {
       return { ...state, posts: [], loading: false, error: action.payload };
     case "posts/delete":
       return { ...state, loading: false, posts: action.payload };
+    case "posts/single":
+      return { ...state, loading: false, editPostData: action.payload };
     default:
       return state;
   }
