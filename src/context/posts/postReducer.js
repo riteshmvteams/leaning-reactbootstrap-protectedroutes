@@ -12,6 +12,8 @@ const postReducer = (state, action) => {
       return { ...state, posts: action.payload, loading: false };
     case "posts/error":
       return { ...state, posts: [], loading: false, error: action.payload };
+    case "posts/delete":
+      return { ...state, loading: false, posts: action.payload };
     default:
       return state;
   }
