@@ -1,13 +1,6 @@
 {
   "posts": [
     {
-      "title": "My first post title",
-      "description": "My first post description",
-      "createdBy": "Test user",
-      "createdAt": 1692618483759,
-      "id": 1
-    },
-    {
       "title": "my second post edited",
       "description": "my second post description",
       "createdBy": "Test user",

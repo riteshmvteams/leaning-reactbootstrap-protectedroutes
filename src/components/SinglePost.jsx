@@ -3,10 +3,14 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { usePosts } from "../hooks/usePosts";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export default function SinglePost({ post }) {
   const navigate = useNavigate();
   const { deletePost } = usePosts();
+  const {
+    state: { authorizationToken },
+  } = useAuth();
 
   const handleEditBtn = () => {
     navigate(`/edit/${post.id}`);
@@ -24,7 +28,7 @@ export default function SinglePost({ post }) {
           Edit <FiEdit />
         </Button>
         <Button
-          disabled={false}
+          disabled={authorizationToken ? false : true}
           classN="d-flex align-items-center gap-1 text-white bg-danger"
           onClick={() => deletePost(post.id)}
         >
