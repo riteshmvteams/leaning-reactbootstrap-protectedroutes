@@ -17,7 +17,6 @@ export default function EditPost() {
     id: "",
   });
 
-  console.log(postData);
   const handleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -36,8 +35,6 @@ export default function EditPost() {
 
     postData.description = "";
     postData.title = "";
-
-    console.log(postData);
   };
 
   useEffect(() => {

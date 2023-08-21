@@ -1,25 +1,18 @@
 {
   "posts": [
     {
-      "title": "dfsdf edited",
-      "description": "sdfsdf",
+      "title": "My first post title",
+      "description": "My first post description",
       "createdBy": "Test user",
-      "createdAt": 1692612457443,
+      "createdAt": 1692618483759,
       "id": 1
     },
     {
-      "title": "sdfsfsdf",
-      "description": "sfdsdfsdf",
+      "title": "my second post edited",
+      "description": "my second post description",
       "createdBy": "Test user",
-      "createdAt": 1692612468532,
+      "createdAt": 1692618523574,
       "id": 2
-    },
-    {
-      "title": "fdsdfsdfdsfsdf",
-      "description": "new desc",
-      "createdBy": "Test user",
-      "createdAt": 1692613842796,
-      "id": 3
     }
   ]
 }

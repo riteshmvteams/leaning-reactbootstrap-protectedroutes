@@ -115,9 +115,7 @@ const PostProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error("Something went wrong... please try again later");
       }
-      const data = await response.json();
-
-      console.log(data);
+      await response.json();
     } catch (error) {
       dispatch({ type: "posts/error", payload: error.message });
       console.log(error);
