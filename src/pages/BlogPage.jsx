@@ -2,15 +2,16 @@ import { useCallback, useEffect } from "react";
 import { usePosts } from "../hooks/usePosts";
 
 export default function BlogPage() {
-  const { fetchPostsFromServer: fetchDataFromServer } = usePosts();
+  const { fetchPostsFromServer: fetchPostsDataFromServer } = usePosts();
 
-  const fetchPostsFromServer = useCallback(fetchDataFromServer, [
-    fetchDataFromServer,
+  const fetchPosts = useCallback(fetchPostsDataFromServer, [
+    fetchPostsDataFromServer,
   ]);
 
   useEffect(() => {
-    fetchPostsFromServer();
+    fetchPosts();
   }, []);
+
   return (
     <h1 className="fs-1 mt-5 text-center">
       This Page shows to both Authenticated and Non-Authenticated user
