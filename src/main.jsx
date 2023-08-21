@@ -6,7 +6,7 @@ import "./index.css";
 // bootstrap css
 import "bootstrap/dist/css/bootstrap.min.css";
 // context
-import AuthProvider from "./context/AuthContext.jsx";
+import AuthProvider from "./context/auth/AuthContext.jsx";
 import PostProvider from "./context/posts/PostContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
