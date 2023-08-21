@@ -7,12 +7,15 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // context
 import AuthProvider from "./context/AuthContext.jsx";
+import PostProvider from "./context/posts/PostContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      {/* <App /> */}
-      <App2 />
+      <PostProvider>
+        {/* <App /> */}
+        <App2 />
+      </PostProvider>
     </AuthProvider>
   </React.StrictMode>
 );
